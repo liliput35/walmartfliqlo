@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walmart Version of Fliqlo</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+      background-color: black;
+      color: rgb(204, 196, 196);
+      font-family: "Poppins", sans-serif;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+    }
+    .wrapper {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+    }
+    p{
+        font-size: 20rem;
+    }
+    span{
+        font-size: 50px;
+    }
+    #time {
+        font-size: 30rem;
+        position: relative;
+        transition: .5s;
+    }
+    #time::after{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: black;
+        bottom: 50%;
+        left: 0;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <p id="maintime"><span id="ampm">a</span><span id="time">10</span></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    setInterval(() => {
+      const time = document.getElementById("time");
+      let date = new Date();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let daynight = "AM";
+      let ampm = document.querySelector("span");
+      if (hours > 12) {
+        daynight = "PM";
+        hours = hours - 12;
+      }
+      if (hours === 12 && minutes > 0) {
+        daynight = "PM";
+      }
+      
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      ampm.textContent = daynight;
+
+      time.textContent = hours + " " + minutes;
+    });
+  </script>
+</html>
